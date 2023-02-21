@@ -45,9 +45,10 @@ fi
 # - Exemplo: /server/Zomboid/data
 if [ -n "${CACHEDIR}" ]; then
   ARGS="${ARGS} -cachedir=${CACHEDIR}"
+else
+  # Se ADMINPASSWORD não estiver definido, use o nome padrão
+  ARGS="${ARGS} -cachedir='/home/steam/Zomboid/Saves/MONGA_PZServer'"
 fi
-
-Zomboid/Saves/Multiplayer/MONGA_PZServer
 
 # Opção para controlar de onde os mods são carregados e a ordem. Qualquer uma das 3 palavras-chave pode ser deixada de fora e pode aparecer em qualquer ordem.
 # - Default: workshop,steam,mods
@@ -70,7 +71,7 @@ if [ -n "${ADMINPASSWORD}" ]; then
   ARGS="${ARGS} -adminpassword ${ADMINPASSWORD}"
 else
   # Se ADMINPASSWORD não estiver definido, use o nome padrão
-  ADMINPASSWORD='P@ssw0rd'
+  ARGS="${ARGS} -adminpassword 'P@ssw0rd'"
 fi
 
 # SERVERNAME
@@ -78,7 +79,7 @@ if [ -n "${SERVERNAME}" ]; then
   ARGS="${ARGS} -servername ${SERVERNAME}"
 else
   # Se SERVERNAME não estiver definido, use o nome padrão
-  SERVERNAME="MONGA_PZServer"
+  ARGS="${ARGS} -servername MONGA_PZServer"
 fi
 
 # Se preset for definido, o arquivo de configuração será gerado quando ele não existir ou SERVERPRESETREPLACE for definido como True.
