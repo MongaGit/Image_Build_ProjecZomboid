@@ -10,7 +10,7 @@ jobs:
     env:
       IMAGE_NAME: monga_projectzomboid
       PROJECT_ID: docker-mongaserver
-
+steps:
 - name: Jenkins-Action
   uses: joshlk/jenkins-githubaction@V0.0.1
 
