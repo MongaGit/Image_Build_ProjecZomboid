@@ -11,6 +11,10 @@ jobs:
       IMAGE_NAME: monga_projectzomboid
       PROJECT_ID: docker-mongaserver
 
+- name: Jenkins-Action
+  uses: joshlk/jenkins-githubaction@V0.0.1
+
+
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -78,4 +82,3 @@ jobs:
         docker start monga_projectzomboid
 
 
-        
