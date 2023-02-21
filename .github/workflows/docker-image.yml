@@ -30,4 +30,3 @@ jobs:
           # run script
           "${GITHUB_WORKSPACE}/scripts/get_updates.sh"
 
-
