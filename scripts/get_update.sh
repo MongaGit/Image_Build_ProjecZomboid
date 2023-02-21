@@ -2,7 +2,7 @@
 
 #DOCKER_IMAGE="danixu86/project-zomboid-dedicated-server"
 
-DOCKER_IMAGE="lorthe/monga_projectzomboid"
+DOCKER_IMAGE="monga_projectzomboid"
 PZ_URL_WEB="https://projectzomboid.com/blog/"
 PZ_URL_FORUM="https://theindiestone.com/forums/index.php?/forum/35-pz-updates/"
 
