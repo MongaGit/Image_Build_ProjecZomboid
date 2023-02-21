@@ -15,7 +15,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - uses: google-github-actions/setup-gcloud@main
+    - uses: google-github-actions/setup-gcloud@v1
       with:
         service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
         project_id: ${{ env.PROJECT_ID }}
@@ -76,4 +76,6 @@ jobs:
         -e WORKSHOP_IDS='2875848298,2849247394,2923439994,2859296947,2859296947,2859296947' \
         --name monga_projectzomboid monga_projectzomboid:latest
         docker start monga_projectzomboid
+
+
         

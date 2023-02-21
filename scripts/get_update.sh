@@ -100,7 +100,7 @@ if [ $NEW_VERSION == -1 ]; then
   docker build --compress --no-cache -t ${DOCKER_IMAGE}:latest -t ${DOCKER_IMAGE}:${LATEST_SERVER_VERSION} .
   docker push ${DOCKER_IMAGE}:${LATEST_SERVER_VERSION}
   docker push ${DOCKER_IMAGE}:latest
-  echo "****************************************************************************"
+  echo "***************************************************************************"
   echo -e "\n\n"
 elif [ $NEW_VERSION == 0 ]; then
   echo -e "\n\nNão há nova versão do servidor Zomboid\n\n"

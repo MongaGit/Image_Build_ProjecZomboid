@@ -48,7 +48,7 @@ RUN ufw allow 27015/tcp
 COPY --chown=${USER}:${USER} scripts/entry.sh /server/scripts/entry.sh
 RUN chmod 550 /server/scripts/entry.sh
 
-# Crie pastas necessárias para manter suas permissões na montagem
+# Crie pastas necessárias para manter suas permissões na montagem 
 RUN mkdir -p "${HOMEDIR}/Zomboid"
 
 WORKDIR ${HOMEDIR}
