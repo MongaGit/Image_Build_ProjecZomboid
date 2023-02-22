@@ -36,7 +36,7 @@ jobs:
      name: Get lastest version PZURLWEB
       id: increment-version-tag
       run: |
-        `curl "${PZ_URL_WEB}" 2>/dev/null| grep -i "Stable Build" | head -n1 | cut -d ":" -f2 | awk '{print $1}'`
+        curl "${PZ_URL_WEB}" 2>/dev/null| grep -i "Stable Build" | head -n1 | cut -d ":" -f2 | awk '{print $1}'
 
     - name: Configure Docker Client
       run: |-
