@@ -111,3 +111,4 @@ else
 fi
   NEW_TAG=${LATEST_SERVER_VERSION}
   echo ::set-output name=git-tag::$NEW_TAG
+
