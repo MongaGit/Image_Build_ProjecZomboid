@@ -81,3 +81,6 @@ jobs:
         -e WORKSHOP_IDS='2875848298,2849247394,2923439994,2859296947,2859296947,2859296947' \
         --name monga_projectzomboid monga_projectzomboid:$PROJECT_VERSION
         docker start monga_projectzomboid
+
+        
+  
