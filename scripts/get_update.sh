@@ -109,3 +109,5 @@ elif [ $NEW_VERSION == 1 ]; then
 else
   echo -e "\n\nA PM passou irmão, vaza que ta feio o negócio\n\n"
 fi
+  NEW_TAG=${LATEST_SERVER_VERSION}
+  echo ::set-output name=git-tag::$NEW_TAG
