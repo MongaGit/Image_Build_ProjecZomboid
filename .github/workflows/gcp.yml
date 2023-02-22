@@ -38,25 +38,25 @@ jobs:
         gcloud auth configure-docker --quiet
         gcloud auth configure-docker us-west1-docker.pkg.dev --quiet
 
-#    - name: Push Docker Image to Container Registry (GCR)
-#      env:
-#        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-#      run: |-
-#        LATEST_SERVER_VERSION=`curl "${PZ_URL_WEB}" 2>/dev/null| grep -i "Stable Build" | head -n1 | cut -d ":" -f2 | awk '{print $1}'`
-#        docker tag $IMAGE_NAME:$PROJECT_VERSION gcr.io/$PROJECT_ID/$IMAGE_NAME:$PROJECT_VERSION
-#        docker tag $IMAGE_NAME:$PROJECT_VERSION gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-#        docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$PROJECT_VERSION
-#        docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+    - name: Push Docker Image to Container Registry (GCR)
+      env:
+        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+      run: |-
+        LATEST_SERVER_VERSION=`curl "${PZ_URL_WEB}" 2>/dev/null| grep -i "Stable Build" | head -n1 | cut -d ":" -f2 | awk '{print $1}'`
+        docker tag $IMAGE_NAME:$PROJECT_VERSION gcr.io/$PROJECT_ID/$IMAGE_NAME:$PROJECT_VERSION
+        docker tag $IMAGE_NAME:$PROJECT_VERSION gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+        docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$PROJECT_VERSION
+        docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
 
-#    - name: Push Docker Image to Artifact Registry
-#      env:
-#        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-#      run: |-
-#        LATEST_SERVER_VERSION=`curl "${PZ_URL_WEB}" 2>/dev/null| grep -i "Stable Build" | head -n1 | cut -d ":" -f2 | awk '{print $1}'`
-#        docker tag $IMAGE_NAME:$PROJECT_VERSION us-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$PROJECT_VERSION
-#        docker tag $IMAGE_NAME:$PROJECT_VERSION us-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
-#        docker push us-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$PROJECT_VERSION
-#        docker push us-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
+    - name: Push Docker Image to Artifact Registry
+      env:
+        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+      run: |-
+        LATEST_SERVER_VERSION=`curl "${PZ_URL_WEB}" 2>/dev/null| grep -i "Stable Build" | head -n1 | cut -d ":" -f2 | awk '{print $1}'`
+        docker tag $IMAGE_NAME:$PROJECT_VERSION us-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$PROJECT_VERSION
+        docker tag $IMAGE_NAME:$PROJECT_VERSION us-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
+        docker push us-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$PROJECT_VERSION
+        docker push us-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
     
     - name: Docker Run
       env:
@@ -84,4 +84,3 @@ jobs:
         docker start monga_projectzomboid
 
         
-  
