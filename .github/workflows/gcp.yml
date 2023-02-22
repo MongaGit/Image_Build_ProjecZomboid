@@ -32,6 +32,11 @@ jobs:
       id: increment-git-tag
       run: |
         bash ./scripts/get_update.sh -v major
+    
+     name: Get lastest version PZURLWEB
+      id: increment-version-tag
+      run: |
+        `curl "${PZ_URL_WEB}" 2>/dev/null| grep -i "Stable Build" | head -n1 | cut -d ":" -f2 | awk '{print $1}'`
 
     - name: Configure Docker Client
       run: |-
@@ -40,7 +45,7 @@ jobs:
 
     - name: Push Docker Image to Container Registry (GCR)
       env:
-        GIT_TAG: ${{ steps.increment-git-tag.outputs.LATEST_IMAGE_VERSION }}
+        GIT_TAG: ${{ steps.increment-git-tag.outputs.increment-version-tag }}
       run: |-
         LATEST_SERVER_VERSION=`curl "${PZ_URL_WEB}" 2>/dev/null| grep -i "Stable Build" | head -n1 | cut -d ":" -f2 | awk '{print $1}'`
         docker tag $IMAGE_NAME:$PROJECT_VERSION gcr.io/$PROJECT_ID/$IMAGE_NAME:$PROJECT_VERSION
@@ -50,8 +55,9 @@ jobs:
 
     - name: Push Docker Image to Artifact Registry
       env:
-        GIT_TAG: ${{ steps.increment-git-tag.outputs.LATEST_IMAGE_VERSION }}
+        GIT_TAG: ${{ steps.increment-git-tag.outputs.increment-version-tag }}
       run: |-
+        LATEST_SERVER_VERSION=`curl "${PZ_URL_WEB}" 2>/dev/null| grep -i "Stable Build" | head -n1 | cut -d ":" -f2 | awk '{print $1}'`
         docker tag $IMAGE_NAME:$PROJECT_VERSION us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$PROJECT_VERSION
         docker tag $IMAGE_NAME:$PROJECT_VERSION us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$LATEST_SERVER_VERSION
         docker push us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$PROJECT_VERSION
@@ -81,5 +87,5 @@ jobs:
         -e WORKSHOP_IDS='2875848298,2849247394,2923439994,2859296947,2859296947,2859296947' \
         --name monga_projectzomboid monga_projectzomboid:$PROJECT_VERSION
         docker start monga_projectzomboid
-        
+
         
