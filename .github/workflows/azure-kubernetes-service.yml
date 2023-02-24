@@ -1,8 +1,6 @@
 
 
-on:
-  push:
-    branches: [main]
+on: [push]
 
 name: Azure Login
 
@@ -19,5 +17,4 @@ jobs:
       - run: |
         az webapp list --query "[?state=='Running']"
 
-      # Checks out the repository this file is in
      
