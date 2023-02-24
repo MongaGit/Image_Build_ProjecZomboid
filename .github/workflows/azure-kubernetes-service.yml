@@ -7,10 +7,8 @@ on:
 name: Azure Login
 
 jobs:
+
   build-and-deploy:
-    permissions:
-      contents: read
-      id-token: write
     runs-on: ubuntu-latest
     steps:
 
