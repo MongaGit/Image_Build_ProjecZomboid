@@ -72,7 +72,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [buildImage]
     steps:
-      # Checks out the repository this file is in
+      # Checks out the repository this file is in 
       - uses: actions/checkout@v3
 
       # Logs in with your Azure credentials
@@ -106,3 +106,4 @@ jobs:
           manifests: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
           images: |
             ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }}
+            
