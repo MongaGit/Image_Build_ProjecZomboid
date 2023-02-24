@@ -53,7 +53,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - run: |
-        #az login .
+        az webapp list --query "[?state=='Running']"
 
       # Checks out the repository this file is in
      
